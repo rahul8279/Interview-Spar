@@ -2,9 +2,16 @@ import Session from "../models/session.model.js";
 import Question from "../models/question.model.js";
 
 export const createSession = async (req, res) => {
-  try {
+  try {  
     const { role, experience, topicToFoucus,description,questions } = req.body;
     const userId = req.user._id;
+    if (!role || !experience || !topicToFoucus || !description || !questions || questions.length === 0) {
+      return res.status(400).json({
+        message: "All fields are required",
+        success: false
+      });
+    }
+
     const newSession = new Session({
       user: userId,
       role,
@@ -32,7 +39,10 @@ export const createSession = async (req, res) => {
 
   } catch (error) {
     console.error("Error creating session:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ 
+      message: "Internal server error" ,
+      success: false
+    });
   }
 };
 

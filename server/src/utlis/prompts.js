@@ -22,7 +22,7 @@ export const questionAnswerPrompt = (
     },
     ...
     ]
-    Important:Do not add extra text . only return valid JSON.
+    Important:Do not add extra text . only return valid JSON and answer is only 30 to 40 word.
   `;
 
 export const conceptExplanationPrompt = (question) =>

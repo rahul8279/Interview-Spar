@@ -6,9 +6,10 @@ export const addQuestionsToSession = async (req, res) => {
     const { sessionId, questions } = req.body;
 
     if (!sessionId || !questions || !Array.isArray(questions)) {
-      return res
-        .status(400)
-        .json({ message: "Invalid request data", success: false });
+      return res.status(400).json({ 
+          message: "Invalid request data", 
+          success: false 
+        });
     }
 
     const session = await Session.findById(sessionId);
