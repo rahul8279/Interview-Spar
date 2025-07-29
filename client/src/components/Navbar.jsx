@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
-    <header className="flex justify-between items-center mb-16 ">
-   <div className="text-4xl text-black font-bold">
-       INTERVIEW SPAR
-   </div>
-   <button className="bg-linear-to-r from-[#ff9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer ">
-       Login / Signup
-   </button>
+    <header className="max-w-full">
+        <div className="p-3">
+          <div className="flex justify-between items-center p-3.5 md:px-40 md:py-10">
+             <h1 className="font-bold md:text-3xl">INTERVIEW <span className="text-amber-400">SPAR </span></h1>
+             <button className="font-medium md:text-xl bg-amber-400 rounded-2xl px-3 p-2">
+              <Link to="/auth">signup/login</Link>
+             </button>
+          </div>
+        </div>
     </header>
   )
 }
