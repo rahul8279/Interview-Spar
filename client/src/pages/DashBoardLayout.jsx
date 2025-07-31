@@ -14,6 +14,8 @@ function DashBoardLayout() {
         setIsModalOpen(false);
     };
 
+    
+
     return (
         <div className="relative  min-h-screen font-sans">
           <Navbar />

@@ -3,7 +3,7 @@ import { generateTokenAndSetCookie } from "../utlis/generateToken.js";
 
 export const Register = async (req, res) => {
       try {
-    const { userName, password, email  } = req.body;
+    const { userName, password, email  } = req.body;  
     //check the data coming from frontend is not missing.
     if (!userName || !password || !email ) {
       return res.status(400).json({
@@ -74,7 +74,7 @@ export const Login = async (req, res) => {
    generateTokenAndSetCookie(res, existingUser._id);
 
     return res.status(200).json({
-      message: "User logged in successfully.",
+      message: `welcome back ${existingUser.userName}`,
       success: true,
       user: existingUser,
     });

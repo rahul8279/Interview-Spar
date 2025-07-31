@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { RxCross2 } from "react-icons/rx";
 
 function SessionForm({closeModal}) {
     const [targetRole, setTargetRole] = useState('');
     const [experience, setExperience] = useState('');
     const [topic, setTopic] = useState('');
     const [description, setDescription] = useState('');
+    const [loading , isLoading ] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,12 +23,15 @@ function SessionForm({closeModal}) {
             <div className="bg-black text-white p-8 rounded-xl shadow-2xl w-full max-w-lg mx-4 transform transition-all duration-300">
                 
                 {/* Modal Header */}
-                <div className="text-center mb-4">
+                <div className="text-center mb-4 relative">
                     <h2 className="text-3xl font-bold">Create a New Session</h2>
                     <p className="text-gray-400 mt-2">
                         Fill in the details below to schedule your session. <br/>
                         This information will help others understand the purpose.
                     </p>
+                    <RxCross2 
+                    onClick={closeModal}
+                    className='absolute right-0 top-0' />
                 </div>
 
                 {/* Session Form */}
@@ -101,7 +106,9 @@ function SessionForm({closeModal}) {
                             type="submit"
                             className="w-full px-6 py-3 bg-black text-white font-semibold rounded-lg border border-white hover:bg-white hover:text-black transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
                         >
-                            Create Session
+                            {
+                                loading ? <span className="loading loading-spinner loading-xl"></span> : "create session"
+                            }
                         </button>
                     </div>
                 </form>
