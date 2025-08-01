@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import toast from "react-hot-toast";
-import {  SessionaxiosInstance, UseraxiosInstance } from "../utils/axios";
+import {  SessionaxiosInstance } from "../utils/axios";
 
 export const useSessionStore = create((set, get) => ({
  allSession : [],
@@ -20,8 +20,6 @@ export const useSessionStore = create((set, get) => ({
  GetSessionByID : async (id) => {
 try {
     const res = await SessionaxiosInstance.get(`/getsessionbyid/${id}`)
-    console.log(res);
-    
     set({singleSession : res.data.session})
     
 } catch (error) {

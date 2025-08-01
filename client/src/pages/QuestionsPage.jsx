@@ -1,17 +1,12 @@
-import { LuSparkles } from "react-icons/lu";
 import Navbar from "../components/Navbar";
-import { RiPushpin2Line } from "react-icons/ri";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
  import {getInitials} from "../utils/helper.js"
 import { useSessionStore } from "../store/useSessionStore";
+import Questions from "../components/Question.jsx";
 
 function QuestionsPage() {
-  const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
-  const toggleAnswer = (index) => {
-    setOpenQuestionIndex(openQuestionIndex == index ? null : index);
-  };
+  
   const { id } = useParams();
   const { singleSession, GetSessionByID } = useSessionStore();
  
@@ -21,7 +16,7 @@ function QuestionsPage() {
   return (
     <>
       <Navbar />
-      <div className="max-w-full ">
+      <div className="max-w-full cursor-pointer ">
         <div className="p-3">
           <div className="md:px-32 ">
             <div className=" w-full p-3 shadow-2xl  rounded-2xl flex flex-col gap-y-5">
@@ -30,7 +25,7 @@ function QuestionsPage() {
                   {getInitials(singleSession?.role)}
                 </span>
                 <div className="flex flex-col w-[60%] md:w-[75%] ">
-                  <h1 className=" font-bold ">{singleSession?.role}</h1>
+                  <h1 className=" font-bold w-full truncate ">{singleSession?.role}</h1>
                   <p className="truncate w-full">
                    {singleSession?.topicToFoucus}
 
@@ -38,15 +33,15 @@ function QuestionsPage() {
                 </div>
               </div>
               <div className="flex gap-10">
-                <div className="badge badge-md rounded-2xl border-white p-1">
+                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit ">
                   Experience : {singleSession?.experience}
                 </div>
-                <div className="badge badge-md rounded-2xl border-white p-1">
+                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit">
                   Question : {singleSession?.questions.length}
                 </div>
-                <div className="badge badge-md rounded-2xl border-white p-1">
+                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit">
                  Last Update : {(() => {
-                      const dateObj = new Date(singleSession.updatedAt);
+                      const dateObj = new Date(singleSession?.updatedAt);
                       const day = String(dateObj.getDate()).padStart(2, "0");
                       const month = String(dateObj.getMonth() + 1).padStart(
                         2,
@@ -61,6 +56,7 @@ function QuestionsPage() {
           </div>
         </div>
       </div>
+     <Questions />
       
     </>
   );

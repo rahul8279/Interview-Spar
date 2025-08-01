@@ -20,7 +20,7 @@ function DashboardCard({ openSessionForm }) {
             {allSession?.map((data) => (
               <div
                 key={data?._id}
-                className=" md:w-[420px] w-[99%] h-[195px] p-3 shadow-2xl border-gray-300 border-1 rounded-2xl flex flex-col gap-y-5"
+                className=" cursor-pointer md:w-[420px] w-[99%] h-[195px] p-3 shadow-2xl border-gray-300 border-1 rounded-2xl flex flex-col gap-y-5"
               >
                 <div className="flex  p-1.5 rounded-xl justify-evenly ">
                   <span className="p-3  text-xl font-bold bg-white text-gray-800 rounded-2xl">
