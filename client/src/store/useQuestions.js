@@ -7,6 +7,7 @@ export const useQuestionStore = create((set, get) => ({
   openAnswerIndex: null,
   openConceptIndex: null,
   isLoading: false,
+  generatedQuestions: [],
 
   togglePin: async (questionId) => {
     try {
@@ -27,19 +28,34 @@ export const useQuestionStore = create((set, get) => ({
       console.error("Pinning error:", err);
     }
   },
+  GenerateQuestions: async (data) => {
+        const { role, experience, topicsTofocus, } = data
+    try {
+      const res = await AiaxiosInstance.post("/generate-questions", {
+        role,
+        experience,
+        topicsTofocus,
+        numberOfQuestions: 10,
+      });
+      set({ generatedQuestions: res.data.data });
+      console.log();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
   fetchExplanation: async (questionText) => {
     try {
-      set({ isLoading: true ,openConceptIndex: questionText});
+      set({ isLoading: true, openConceptIndex: questionText });
       const res = await AiaxiosInstance.post("/generate-explanations", {
         concept: questionText,
       });
-        set({concept: res.data.data });
-      
+      set({ concept: res.data.data });
     } catch (err) {
       console.error("Explanation error:", err);
     } finally {
-      set({isLoading :false})
+      set({ isLoading: false });
     }
   },
 

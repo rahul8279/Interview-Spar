@@ -1,19 +1,34 @@
 import React, { useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
+import { useSessionStore } from '../store/useSessionStore';
+import { useQuestionStore } from '../store/useQuestions';
+import { SessionaxiosInstance } from '../utils/axios';
+import { useNavigate } from 'react-router-dom';
 
 function SessionForm({closeModal}) {
-    const [targetRole, setTargetRole] = useState('');
-    const [experience, setExperience] = useState('');
-    const [topic, setTopic] = useState('');
-    const [description, setDescription] = useState('');
-    const [loading , isLoading ] = useState(false)
-
-    const handleSubmit = (e) => {
+    // const { role, experience, topicsTofocus, description,questions } = req.body;
+   const [formData,setFormData]  = useState({
+    role:"",
+    experience:"",
+    topicsTofocus:"",
+    description:""
+   })
+   const navigate = useNavigate()
+   const [loading,setLoading] = useState(false)
+   const {createSession} = useSessionStore()
+   const {GenerateQuestions,generatedQuestions} = useQuestionStore();
+  const chanageInput = (e) => {
+     setFormData({...formData,[e.target.name] : e.target.value});
+  }
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        // Log the new form data on submission
-        console.log('Form Submitted', { targetRole, experience, topic, description });
-        closeModal(); // Close the modal after submission
-    };
+        setLoading(true)
+         await GenerateQuestions(formData)
+        // navigate('/test')
+         await createSession(formData ,generatedQuestions)
+         setLoading(false)
+        closeModal(); // 
+    }
 
     return (
         // Modal Overlay: Covers the entire screen
@@ -44,8 +59,9 @@ function SessionForm({closeModal}) {
                         <input
                             type="text"
                             id="targetRole"
-                            value={targetRole}
-                            onChange={(e) => setTargetRole(e.target.value)}
+                            name="role"
+                            value={formData.role}
+                            onChange={chanageInput}
                             className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                             placeholder="e.g., Frontend Developer"
                             required
@@ -60,8 +76,9 @@ function SessionForm({closeModal}) {
                         <input
                             type="text"
                             id="experience"
-                            value={experience}
-                            onChange={(e) => setExperience(e.target.value)}
+                            name='experience'
+                            value={formData.experience}
+                             onChange={chanageInput}
                             className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                             placeholder="e.g., 2-4 Years"
                             required
@@ -76,8 +93,9 @@ function SessionForm({closeModal}) {
                         <input
                             type="text"
                             id="topic"
-                            value={topic}
-                            onChange={(e) => setTopic(e.target.value)}
+                            name='topicsTofocus'
+                            value={formData.topicsTofocus}
+                            onChange={chanageInput}
                             className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                             placeholder="e.g., React State Management"
                             required
@@ -91,8 +109,9 @@ function SessionForm({closeModal}) {
                         </label>
                         <textarea
                             id="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            name='description'
+                            value={formData.description}
+                             onChange={chanageInput}
                             className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                             rows="4"
                             placeholder="Provide a brief summary of the session..."

@@ -5,6 +5,7 @@ import Auth from "./pages/Auth"
 import DashBoardLayout from './pages/DashBoardLayout';
 import QuestionsPage from './pages/QuestionsPage';
 import { useAuthStore } from './store/useAuth.store';
+// import Test from './components/Test';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={!user ? <LandingPage /> : <DashBoardLayout />  } />
        <Route path='/auth' element={<Auth />} />
        <Route path='/questions/:id' element={<QuestionsPage />} />
+       {/* <Route path='/test' element={<Test />} /> */}
       </Routes>
     </Router>
     <Toaster />

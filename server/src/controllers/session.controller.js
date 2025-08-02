@@ -3,20 +3,20 @@ import Question from "../models/question.model.js";
 
 export const createSession = async (req, res) => {
   try {  
-    const { role, experience, topicToFoucus,description,questions } = req.body;
+     const { role, experience, topicsTofocus, description,questions } = req.body;
+     if (!role || !experience || !topicsTofocus || !description ) {
+              return res.status(400).json({
+                message:"All field are required.",
+                success:false
+              })
+     }
+     
     const userId = req.user._id;
-    if (!role || !experience || !topicToFoucus || !description || !questions || questions.length === 0) {
-      return res.status(400).json({
-        message: "All fields are required",
-        success: false
-      });
-    }
-
     const newSession = new Session({
       user: userId,
       role,
       experience,
-      topicToFoucus,
+      topicsTofocus,
       description
     })
      const qustionsDoc = await Promise.all(

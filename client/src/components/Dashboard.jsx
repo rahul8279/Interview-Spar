@@ -30,7 +30,7 @@ function DashboardCard({ openSessionForm }) {
                   onClick={() => navigate(`/questions/${data._id}`)}
                   className="flex flex-col w-[60%] md:w-[75%] ">
                     <h1 className=" font-bold ">{data?.role}</h1>
-                    <p className="truncate w-full">{data.topicToFoucus} </p>
+                    <p className="truncate w-full">{data?.topicsTofocus} </p>
                   </div>
                 </div>
                 <div className="flex justify-evenly items-center">

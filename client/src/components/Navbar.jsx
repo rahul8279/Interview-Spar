@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuth.store";
 import { MdLogout } from "react-icons/md";
 
 function Navbar() {
   const { user, Logout } = useAuthStore();
+  const navigate = useNavigate()
   const handleLogout = () => {
     Logout();
+   navigate('/')
   };
   return (
     <header className="max-w-full  ">
