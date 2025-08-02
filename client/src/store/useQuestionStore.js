@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { AiaxiosInstance, QuestionsaxiosInstance } from "../utils/axios";
+import toast from "react-hot-toast";
+import { useSessionStore } from "./useSessionStore";
 
 export const useQuestionStore = create((set, get) => ({
   pinnedQuestions: [],
@@ -65,4 +67,30 @@ export const useQuestionStore = create((set, get) => ({
   },
 
   closeConcept: () => set({ openConceptIndex: null }),
+
+  AddQuestionsToSession : async(id,questions)  => {
+    try {
+      const res = await QuestionsaxiosInstance.post("/add-questions",{
+        sessionId:id,
+         questions:questions
+      })
+           const addedQuestion = res.data.createsesion; // ✅ single question object
+
+    const { singleSession, setSingleSession } = useSessionStore.getState();
+
+    if (singleSession && singleSession._id === id) {
+      const updatedSession = {
+        ...singleSession,
+        questions: [...(singleSession.questions || []), addedQuestion], // ✅ append new question
+      };
+
+      setSingleSession(updatedSession); // ✅ real-time re-render
+    }
+       
+    } catch (error) {
+      console.log(error);
+      
+      toast.error(error.response.data.messsage)
+    }
+  }
 }));

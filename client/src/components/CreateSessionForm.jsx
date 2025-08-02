@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
 import { useSessionStore } from '../store/useSessionStore';
-import { useQuestionStore } from '../store/useQuestions';
+import { useQuestionStore } from '../store/useQuestionStore';
 import { SessionaxiosInstance } from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
 

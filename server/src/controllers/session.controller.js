@@ -3,7 +3,7 @@ import Question from "../models/question.model.js";
 
 export const createSession = async (req, res) => {
   try {  
-     const { role, experience, topicsTofocus, description,questions } = req.body;
+     const { role, experience, topicsTofocus, description,questions } = req.body;     
      if (!role || !experience || !topicsTofocus || !description ) {
               return res.status(400).json({
                 message:"All field are required.",

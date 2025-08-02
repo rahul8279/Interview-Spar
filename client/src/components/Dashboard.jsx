@@ -3,14 +3,16 @@ import { RxCross1 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSessionStore } from "../store/useSessionStore";
+import { getInitials } from "../utils/helper";
 
 
 function DashboardCard({ openSessionForm }) {
-  const {allSession,GetAllSession}= useSessionStore()
+  const {allSession,GetAllSession,DeleteSession}= useSessionStore()
+  
   const navigate = useNavigate();
   useEffect(() => {
     GetAllSession();
-  }, []);
+  }, [GetAllSession,DeleteSession]);
 
   return (
     <>
@@ -22,7 +24,7 @@ function DashboardCard({ openSessionForm }) {
                 key={data?._id}
                 className=" cursor-pointer md:w-[420px] w-[99%] h-[195px] p-3 shadow-2xl border-gray-300 border-1 rounded-2xl flex flex-col gap-y-5"
               >
-                <div className="flex  p-1.5 rounded-xl justify-evenly ">
+                <div className="flex  p-1.5 rounded-xl justify-evenly relative">
                   <span className="p-3  text-xl font-bold bg-white text-gray-800 rounded-2xl">
                     {getInitials(data.role)}
                   </span>
@@ -32,8 +34,14 @@ function DashboardCard({ openSessionForm }) {
                     <h1 className=" font-bold ">{data?.role}</h1>
                     <p className="truncate w-full">{data?.topicsTofocus} </p>
                   </div>
+                   <RxCross1 
+                   className="text-2xl absolute top-0 right-0"
+                   onClick={() => DeleteSession(data?._id) }
+                    />
                 </div>
+                
                 <div className="flex justify-evenly items-center">
+                 
                   <div className="badge badge-md rounded-2xl border-white p-1">
                     {" "}
                     Experience : {data.experience}
@@ -73,6 +81,6 @@ function DashboardCard({ openSessionForm }) {
     </>
   );
 }
-import { getInitials } from "../utils/helper";
+
 
 export default DashboardCard;

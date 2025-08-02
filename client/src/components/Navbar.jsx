@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/useAuth.store";
+import { useAuthStore } from "../store/useAuthStore";
 import { MdLogout } from "react-icons/md";
 
 function Navbar() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LuLoader } from "react-icons/lu";
 import { data, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/useAuth.store";
+import { useAuthStore } from "../store/useAuthStore";
 
 function Auth() {
   const [login, setLogin] = useState(false);

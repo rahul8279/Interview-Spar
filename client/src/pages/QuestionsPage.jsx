@@ -25,21 +25,21 @@ function QuestionsPage() {
                   {getInitials(singleSession?.role)}
                 </span>
                 <div className="flex flex-col w-[60%] md:w-[75%] ">
-                  <h1 className=" font-bold w-full truncate ">{singleSession?.role}</h1>
+                  <h1 className=" font-bold md:text-xl w-full truncate ">{singleSession?.role}</h1>
                   <p className="truncate w-full">
-                   {singleSession?.topicToFoucus}
+                   {singleSession?.topicsTofocus}
 
                   </p>
                 </div>
               </div>
               <div className="flex gap-10">
-                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit ">
+                <div className="badge badge-md rounded-[10px] border-white p-1 w-fit h-fit ">
                   Experience : {singleSession?.experience}
                 </div>
-                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit">
+                <div className="badge badge-md rounded-[10px] border-white p-1 w-fit h-fit">
                   Question : {singleSession?.questions.length}
                 </div>
-                <div className="badge badge-md rounded-xl border-white p-1 w-fit h-fit">
+                <div className="badge badge-md rounded-[10px] border-white p-1 w-fit h-fit">
                  Last Update : {(() => {
                       const dateObj = new Date(singleSession?.updatedAt);
                       const day = String(dateObj.getDate()).padStart(2, "0");
