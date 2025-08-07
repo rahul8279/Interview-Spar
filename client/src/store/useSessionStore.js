@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { SessionaxiosInstance } from "../utils/axios";
 
 export const useSessionStore = create(
-  persist(
     (set, get) => ({
       allSession: [],
       singleSession: null,
@@ -55,8 +54,6 @@ export const useSessionStore = create(
         }
       },
     }),
-    {
-      name: "session-storage",
-    }
-  )
+    
+  
 );

@@ -24,8 +24,10 @@ function SessionForm({closeModal}) {
         e.preventDefault();
         setLoading(true)
          await GenerateQuestions(formData)
-        // navigate('/test')
-         await createSession(formData ,generatedQuestions)
+        if (generatedQuestions.length >=1) {
+            console.log(generatedQuestions.length);
+            await createSession(formData,generatedQuestions)
+        }
          setLoading(false)
         closeModal(); // 
     }

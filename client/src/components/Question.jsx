@@ -17,7 +17,7 @@ function Questions() {
     toggleAnswer,
     GenerateQuestions,
     generatedQuestions,
-    AddQuestionsToSession
+    AddQuestionsToSession,
   } = useQuestionStore();
 
   const allQuestions = [
@@ -29,17 +29,16 @@ function Questions() {
       : []),
   ];
   const data = {
-    role:singleSession?.role,
-    experience:singleSession?.experience,
-    topicsTofocus:singleSession?.topicsTofocus,
-
-  }
-  const LoadMoreQustions = async() => {
-     await GenerateQuestions(data);
-     if (generatedQuestions.length >= 0) {
-      await AddQuestionsToSession(singleSession?._id,generatedQuestions)
-     }
-  }
+    role: singleSession?.role,
+    experience: singleSession?.experience,
+    topicsTofocus: singleSession?.topicsTofocus,
+  };
+  const LoadMoreQustions = async () => {
+    await GenerateQuestions(data);
+    if (generatedQuestions.length >= 0) {
+      await AddQuestionsToSession(singleSession?._id, generatedQuestions);
+    }
+  };
   return (
     <div className="md:p-4 relative">
       <div className="w-full  md:max-w-7xl mx-auto flex flex-col md:flex-row md:gap-6">
@@ -55,7 +54,7 @@ function Questions() {
               const isOpen = openAnswerIndex === index;
               return (
                 <div
-                  key={data._id || index}
+                  key={data?._id || index}
                   className=" shadow-2xl rounded-xl overflow-hidden"
                 >
                   <div className="p-5">
@@ -65,7 +64,7 @@ function Questions() {
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <h3 className="text-[17px]  font-medium ">
-                          {data.question}
+                          {data?.question}
                         </h3>
                       </div>
                       <div className="flex items-center gap-4">
@@ -97,9 +96,7 @@ function Questions() {
                     {isOpen && (
                       <div className="mt-2 text-[17px] p-2  ">
                         <div className="shadow-xl  bg-gray-800 rounded-[8px] p-3">
-                          <p>
-                            {data.answer || "No answer provided yet."}
-                          </p>
+                          <p>{data.answer || "No answer provided yet."}</p>
                         </div>
                       </div>
                     )}
@@ -108,16 +105,16 @@ function Questions() {
               );
             })}
           </div>
-          <div 
-          onClick={LoadMoreQustions}
-          className=" p-3 rounded-xl cursor-pointer mt-3 w-fit bg-white flex gap-2 items-center ">
-      <AiOutlineMenuUnfold className="text-xl text-gray-900" />
-      <span className="text-black w-fit">Load More</span>
-     </div>
+          <div
+            onClick={LoadMoreQustions}
+            className=" p-3 rounded-xl cursor-pointer mt-3 w-fit bg-white flex gap-2 items-center "
+          >
+            <AiOutlineMenuUnfold className="text-xl text-gray-900" />
+            <span className="text-black w-fit">Load More</span>
+          </div>
         </div>
-        {openConceptIndex !== null && <Apires /> }
+        {openConceptIndex !== null && <Apires />}
       </div>
-     
     </div>
   );
 }

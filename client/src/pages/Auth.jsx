@@ -24,7 +24,22 @@ const {loading , Signup , Login } = useAuthStore()
         })
       : setSignupInput({ ...signupinput, [e.target.name]: e.target.value });
   };
-
+  const HandleDemoAccount = () =>{
+    if (login) {
+      setloginInput({
+        email:"demo@gmail.com",
+        password:"demo123"
+      })
+   
+    }else{
+      setSignupInput({
+        userName:"demoaccount",
+       email:"demo@gmail.com",
+        password:"demo123"
+      })
+      
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();    
     if (login) {
@@ -37,7 +52,7 @@ const {loading , Signup , Login } = useAuthStore()
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen    ">
+    <div className="flex flex-col items-center justify-center h-screen w-screen">
       <div className=" h-[60%] w-[70%] lg:w-[30%] rounded-lg shadow-2xl  flex flex-col justify-center   items-center ">
         {login ? (
           <h1 className="text-3xl font-bold mb-4">Login</h1>
@@ -48,7 +63,7 @@ const {loading , Signup , Login } = useAuthStore()
           <button
             onClick={() => setLogin(true)}
             className={`cursor-pointer font-medium px-5 py-1  transition-all duration-300 rounded-xl ${
-              login ? "bg-blue-500 text-white" : "bg-white text-gray-700"
+              login ? "bg-amber-500 text-white" : "bg-white text-gray-700"
             }`}
           >
             login
@@ -56,7 +71,7 @@ const {loading , Signup , Login } = useAuthStore()
           <button
             onClick={() => setLogin(false)}
             className={`cursor-pointer font-medium px-5 py-1  transition-all duration-300 rounded-xl ${
-              !login ? "bg-blue-500 text-white" : "bg-white text-gray-700"
+              !login ? "bg-amber-500 text-white" : "bg-white text-gray-700"
             }`}
           >
             Signup
@@ -95,16 +110,22 @@ const {loading , Signup , Login } = useAuthStore()
           
           <button
             type="submit"
-            className="bg-blue-500 text-white rounded-lg p-2 w-64 hover:bg-blue-600 transition-all duration-300 text-center flex justify-center items-center"
+            className="bg-amber-500 text-white rounded-lg p-2 w-64 hover:bg-amber-600 transition-all duration-300 text-center flex justify-center items-center"
           >
             {
               loading ? <LuLoader className=" text-2xl animate-spin" /> : login ? "login" : "signup"
             }
           </button>
+          <button 
+          onClick={HandleDemoAccount}
+          className="p-2 bg-amber-500 rounded-xl"
+          >
+            Demo Account
+          </button>
         </form>
-
         
       </div>
+      
     </div>
   );
 }

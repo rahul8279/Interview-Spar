@@ -30,6 +30,9 @@ const Apires = () => {
       </div>
     );
   }
+  if (!concept) {
+    return <h1 className="text-center text-6xl">Something went wrong <br /> Try Again </h1>
+  }
   return (
     <div className=" w-xl shadow-2xl border-gray-500">
       <div className="  flex flex-col gap-3 relative">

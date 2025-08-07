@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useSessionStore } from "./useSessionStore";
 
 export const useQuestionStore = create(
-  persist(
+  
     (set, get) => ({
       // State
       pinnedQuestions: [],
@@ -93,8 +93,5 @@ export const useQuestionStore = create(
         }
       },
     }),
-    {
-      name: "question-storage", 
-    }
-  )
-);
+    
+  );
