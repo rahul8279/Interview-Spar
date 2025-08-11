@@ -1,4 +1,4 @@
-# Interview prepration website with AI.
+# Interview preparation website with AI.
 
 
 -------
