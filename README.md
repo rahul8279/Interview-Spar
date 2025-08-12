@@ -9,7 +9,7 @@
 
 
 ---  
-![Macbook-Air-Iphone-13](../chat/frontend/public/s1.png)
+![Macbook-Air-Iphone-13](https://github.com/rahul8279/Interview-Spar/blob/main/s1.png?raw=true)
 
 
 
@@ -45,12 +45,24 @@ Follow these steps to set up and run the project locally:
 
 
   
-![Macbook-Air-Iphone-13](../chat/frontend/public/s3.png)
+![Macbook-Air-Iphone-13](https://github.com/rahul8279/Interview-Spar/blob/main/s2.png?raw=true)
 
 
 
 ---
 
+![Macbook-Air-Iphone-13](https://github.com/rahul8279/Interview-Spar/blob/main/s3.png?raw=true)
+
+----
+
+
+![Macbook-Air-Iphone-13](https://github.com/rahul8279/Interview-Spar/blob/main/s4.png?raw=true)
+
+
+
+----
+
+![Macbook-Air-Iphone-13](https://github.com/rahul8279/Interview-Spar/blob/main/s5.png?raw=true)
 
 
 
